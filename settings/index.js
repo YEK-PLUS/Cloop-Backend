@@ -1,11 +1,11 @@
 const cors = require('./cors');
 const database = require('./database');
 const messages = require('./messages');
-const secretKey = require('./secretKey');
+const secretKeys = require('./secretKeys');
 
 module.exports = {
   cors,
   database,
   messages,
-  secretKey
+  secretKeys
 }
