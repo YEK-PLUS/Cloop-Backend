@@ -1,12 +1,12 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import session from 'express-session';
-import cors from 'cors';
-import corsOptions from '../middlewares/cors';
-import logging from '../middlewares/logging';
+const express = require( 'express');
+const cookieParser = require( 'cookie-parser');
+const logger = require( 'morgan');
+const session = require( 'express-session');
+const cors = require( 'cors');
+const corsOptions = require( '../middlewares/cors');
+const logging = require( '../middlewares/logging');
 
-export default () => {
+module.exports = () => {
   const app = express();
   const sessionOption = {
     secret: settings.secretKeys.session,
