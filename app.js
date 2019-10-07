@@ -1,10 +1,6 @@
-const Requirements = require( './requirements');
-
-const { express, passport, routes } = Requirements;
-const { initializeRoutes, initializeError } = routes;
+const { express, passport, routes } = require( './requirements');
 
 const app = express();
 passport(app);
-initializeRoutes(app);
-initializeError(app);
+routes(app);
 module.exports = app;
