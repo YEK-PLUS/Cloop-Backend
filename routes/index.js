@@ -1,10 +1,9 @@
 const mainRouter= require( './main');
- const initializeRoutes = (app) => {
+
+module.exports = (app) => {
   app.use('/main', mainRouter);
-};
- const initializeError = (app) => {
+
   app.use((req, res) => {
-    res.send(404, { error: 'not found' });
+    res.status(404).send(settings.messages.notFound).end();
   });
 };
-module.exports = { initializeRoutes, initializeError };
