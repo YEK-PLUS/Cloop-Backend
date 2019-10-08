@@ -5,6 +5,12 @@ module.exports = {
   error: {
     error: 'error',
   },
+  unauthorized:{
+    error: 'unauthorized'
+  },
+  notFound: {
+    error: 'not found'
+  },
   userExists: {
     error: 'user exists',
   },
