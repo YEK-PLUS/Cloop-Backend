@@ -10,8 +10,8 @@ module.exports = () => {
   const app = express();
   const sessionOption = {
     secret: settings.secretKeys.session,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   };
 
 
