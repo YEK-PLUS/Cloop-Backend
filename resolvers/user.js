@@ -1,21 +1,22 @@
 module.exports={
     Query: {
-      me: (parent, args, { me }) => {
-        return me;
+      users: async (parent, args, { models }) => {
+        console.log(models)
+        return await models.User.findAll();
       },
-      user: (parent, { id },{ models }) => {
-        return models.users[id];
-      },
-      users: (parent, args, { models }) => {
-        return Object.values(models.users);
+      user: async (parent, { uid }, { models }) => {
+       return await models.User.findByPk(uid);
       },
     },
 
     User: {
-      messages: (user, args, { models }) => {
-        return Object.values(models.messages).filter(
-          message => message.userId === user.id,
-        );
+      messages: async (user, args, { models }) => {
+        return await models.Message.findAll({
+          where: {
+            userId: user.id,
+          },
+        });
       },
     },
+
 }
