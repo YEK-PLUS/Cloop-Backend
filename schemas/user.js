@@ -2,12 +2,14 @@ const { gql } = require('apollo-server-express');
 module.exports = gql`
 extend type Query {
   users: [User!]
-  user(id: ID!): User
+  user(uid: String!): User
   me: User
 }
 type User {
-  id: ID!
+  uid: String!
   username: String!
+  password: String!
+  mail: String!
   messages: [Message!]
 }
 `;
