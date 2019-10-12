@@ -1,4 +1,4 @@
 module.exports = {
   session: 'keyboard cat',
-  jwt: 'secret'
-}
+  jwt: 'secret',
+};

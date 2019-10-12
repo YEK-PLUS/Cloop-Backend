@@ -5,11 +5,11 @@ module.exports = {
   error: {
     error: 'error',
   },
-  unauthorized:{
-    error: 'unauthorized'
+  unauthorized: {
+    error: 'unauthorized',
   },
   notFound: {
-    error: 'not found'
+    error: 'not found',
   },
   userExists: {
     error: 'user exists',
@@ -23,4 +23,4 @@ module.exports = {
   requiredFields: {
     error: 'fill in the required fields',
   },
-}
+};

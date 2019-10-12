@@ -1,7 +1,13 @@
+const cors = require('./cors');
+const database = require('./database');
+const messages = require('./messages');
+const secretKeys = require('./secretKeys');
+const whiteList = require('./whiteList');
+
 module.exports = {
-  cors:require('./cors'),
-  database:require('./database'),
-  messages:require('./messages'),
-  secretKeys:require('./secretKeys'),
-  whiteList:require('./whiteList')
-}
+  cors,
+  database,
+  messages,
+  secretKeys,
+  whiteList,
+};
