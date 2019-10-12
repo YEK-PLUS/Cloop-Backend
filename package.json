@@ -7,9 +7,9 @@
     "start-nodemon": "nodemon server",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix && eslint . --fix-dry-run",
-    "check-push":"node scripts/check-push.js"
+    "check-push": "node scripts/check-push.js"
   },
-  "pre-push":[
+  "pre-push": [
     "lint-fix",
     "check-push"
   ],
