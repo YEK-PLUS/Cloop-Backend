@@ -1,9 +1,10 @@
-const { ApolloServer,AuthenticationError  } =require('apollo-server-express');
+const { ApolloServer, AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
-const schema = require('../schemas')
-const resolvers = require('../resolvers')
-const models = require('../models')
-const getMe = async req => {
+const schema = require('../schemas');
+const resolvers = require('../resolvers');
+const models = require('../models');
+
+const getMe = async (req) => {
   const token = req.headers['x-token'];
   if (token) {
     try {
@@ -14,6 +15,7 @@ const getMe = async req => {
       );
     }
   }
+  return false;
 };
 module.exports = (app) => {
   const apollo = new ApolloServer({

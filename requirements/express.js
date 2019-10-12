@@ -1,10 +1,10 @@
-const express = require( 'express');
-const cookieParser = require( 'cookie-parser');
-const logger = require( 'morgan');
-const session = require( 'express-session');
-const cors = require( 'cors');
-const corsOptions = require( '../middlewares/cors');
-const logging = require( '../middlewares/logging');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const cors = require('cors');
+const corsOptions = require('../middlewares/cors');
+const logging = require('../middlewares/logging');
 
 module.exports = () => {
   const app = express();
