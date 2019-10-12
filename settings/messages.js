@@ -14,6 +14,9 @@ module.exports = {
   userExists: {
     error: 'user exists',
   },
+  invalidPassword: {
+    error: 'Invalid password',
+  },
   userNotFound: {
     error: 'user not found',
   },
