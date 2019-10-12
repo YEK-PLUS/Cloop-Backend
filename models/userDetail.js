@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const UserDetail = sequelize.define('user_detail', {
-    user_uid: {
+    userUid: {
       type: DataTypes.CHAR,
       primaryKey: true
     },
