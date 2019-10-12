@@ -1,7 +1,5 @@
-module.exports={
-    Query: {
-      userDetail: (parent, { userUid }, { models }) => {
-        return models.UserDetail.findByPk(userUid);
-      },
-    },
-}
+module.exports = {
+  Query: {
+    userDetail: (parent, { userUid }, { models }) => models.UserDetail.findByPk(userUid),
+  },
+};
