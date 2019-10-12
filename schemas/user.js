@@ -3,13 +3,23 @@ module.exports = gql`
 extend type Query {
   users: [User!]
   user(uid: String!): User
-  me: User
+}
+extend type Mutation {
+  signUp(
+    username: String!
+    mail: String!
+    password: String!
+  ): Token!
+  signIn(login: String!, password: String!): Token!
+}
+type Token {
+  token: String!
 }
 type User {
   uid: String!
   username: String!
   password: String!
   mail: String!
-  messages: [Message!]
+  details: UserDetail!
 }
 `;
