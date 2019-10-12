@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
+const { ForbiddenError,AuthenticationError, UserInputError }= require ('apollo-server');
+const { skip  }= require ('graphql-resolvers');
 const uuid = require( 'uuid/v4');
-const { AuthenticationError, UserInputError } = require('apollo-server');
 
 module.exports={
     Query: {
@@ -11,6 +12,13 @@ module.exports={
       user: async (parent, { uid }, { models }) => {
        return await models.User.findByPk(uid);
       },
+      me: async (parent, args, { models, me }) => {
+        if (!me) {
+          return null;
+        }
+        return await models.User.findByPk(me);
+      },
+
     },
     Mutation: {
       signUp: async (
@@ -45,7 +53,8 @@ module.exports={
     },
 
     User: {
-      details: async (user, args, { models }) => {
+      details: async (user, args, { models,me }) => {
+        me ? skip : new ForbiddenError('Not authenticated as user.');
         return await models.UserDetail.findOne({
           where: {
             userUid: user.uid,
