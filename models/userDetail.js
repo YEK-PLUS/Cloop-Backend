@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const UserDetail = sequelize.define('user_detail', {
     userUid: {
       type: DataTypes.CHAR,
-      primaryKey: true
+      primaryKey: true,
     },
     country: {
       type: DataTypes.STRING,
@@ -28,16 +28,14 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      defaultValue: sequelize.NOW
+      defaultValue: sequelize.NOW,
     },
     updatedAt: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      defaultValue: sequelize.NOW
-    }
+      defaultValue: sequelize.NOW,
+    },
   });
-  UserDetail.associate = models => {
-    return true
-  };
+  UserDetail.associate = () => true;
   return UserDetail;
 };

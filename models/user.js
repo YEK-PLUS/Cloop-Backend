@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     uid: {
       type: DataTypes.CHAR,
-      primaryKey: true
+      primaryKey: true,
     },
     username: {
       type: DataTypes.STRING,
@@ -17,28 +18,30 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      defaultValue: sequelize.NOW
+      defaultValue: sequelize.NOW,
     },
     updatedAt: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      defaultValue: sequelize.NOW
-    }
+      defaultValue: sequelize.NOW,
+    },
   });
-  User.associate = models => {
-    User.belongsTo(models.UserDetail,{ foreignKey: 'uid' });
+  User.associate = (models) => {
+    User.belongsTo(models.UserDetail, { foreignKey: 'uid' });
   };
-  User.beforeCreate(async user => {
+  User.beforeCreate(async (user) => {
+    /* eslint no-param-reassign: 0 */
     user.password = await user.generatePasswordHash();
+    /* eslint no-param-reassign: 2 */
   });
-  User.prototype.generatePasswordHash = async function() {
+  User.prototype.generatePasswordHash = async () => {
     const saltRounds = 10;
     return await bcrypt.hash(this.password, saltRounds);
   };
   User.prototype.validatePassword = async function(password) {
     return await bcrypt.compare(password, this.password);
   };
-  User.findByLogin = async login => {
+  User.findByLogin = async (login) => {
     let user = await User.findOne({
       where: { username: login },
     });

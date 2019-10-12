@@ -1,8 +1,8 @@
 const models = {
-  User:sequelize.import('./user'),
-  UserDetail:sequelize.import('./userDetail'),
+  User: sequelize.import('./user'),
+  UserDetail: sequelize.import('./userDetail'),
 };
-Object.keys(models).forEach(key => {
+Object.keys(models).forEach((key) => {
   if ('associate' in models[key]) {
     models[key].associate(models);
   }
