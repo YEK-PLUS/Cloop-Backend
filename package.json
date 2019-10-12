@@ -9,10 +9,10 @@
     "lint-fix": "eslint . --fix && eslint . --fix-dry-run",
     "check-push":"node scripts/check-push.js"
   },
-  "pre-push":{
+  "pre-push":[
     "lint-fix",
     "check-push"
-  },
+  ],
   "dependencies": {
     "apollo-server": "^2.9.6",
     "apollo-server-express": "^2.9.5",
