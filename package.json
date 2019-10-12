@@ -9,10 +9,6 @@
     "lint-fix": "eslint . --fix && eslint . --fix-dry-run",
     "check-push": "node scripts/check-push.js"
   },
-  "pre-push": [
-    "lint-fix",
-    "check-push"
-  ],
   "dependencies": {
     "apollo-server": "^2.9.6",
     "apollo-server-express": "^2.9.5",
@@ -35,7 +31,6 @@
   "devDependencies": {
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "pre-push": "^0.1.1"
+    "eslint-plugin-import": "^2.18.2"
   }
 }
