@@ -10,10 +10,10 @@ module.exports={
     },
 
     User: {
-      messages: async (user, args, { models }) => {
-        return await models.Message.findAll({
+      details: async (user, args, { models }) => {
+        return await models.UserDetail.findOne({
           where: {
-            userId: user.id,
+            userUid: user.uid,
           },
         });
       },
