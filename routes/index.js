@@ -1,4 +1,4 @@
-const mainRouter= require( './main');
+const mainRouter = require('./main');
 
 module.exports = (app) => {
   app.use('/main', mainRouter);
