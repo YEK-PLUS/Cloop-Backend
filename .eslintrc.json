@@ -10,7 +10,7 @@
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
-    "key": "readonly",
+    "settings": "readonly",
     "passportSecurity": "readonly",
     "sequelize":"readonly"
   },
@@ -19,5 +19,6 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-return-await":"off"
   }
 }
