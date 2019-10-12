@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const morgan = require('morgan');
 const session = require('express-session');
 const cors = require('cors');
 const corsOptions = require('../middlewares/cors');
@@ -15,8 +15,8 @@ module.exports = () => {
   };
 
 
-  app.use(logger('combined', { stream: logging }));
-  app.use(logger('dev'));
+  app.use(morgan('combined', { stream: logging }));
+  app.use(morgan('dev'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
