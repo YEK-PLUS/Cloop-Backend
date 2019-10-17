@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     if (!user) {
       user = await User.findOne({
-        where: { email: login },
+        where: { mail: login },
       });
     }
     return user;
