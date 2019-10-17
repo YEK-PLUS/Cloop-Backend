@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server",
-    "start-nodemon": "nodemon server",
+    "nodemon": "nodemon server",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix && eslint . --fix-dry-run",
     "check-push": "node scripts/check-push.js"
