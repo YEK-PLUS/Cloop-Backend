@@ -5,15 +5,18 @@ const jwt = require('jsonwebtoken');
 const router = Router();
 router.post('/login', async (req, res) => {
   const {login,password} = req.body
+  if (!login||!password) {
+    return res.status(400).send(settings.messages.requiredFields);
+  }
   const user = await models.User.findByLogin(login);
   if (!user) {
-    throw new UserInputError(settings.messages.requiredFields.error);
+    return res.status(400).send(settings.messages.userNotFound);
   }
   const isValid = await user.validatePassword(password);
   if (!isValid) {
-    throw new AuthenticationError(settings.messages.invalidPassword.error);
+    return res.status(401).send(settings.messages.invalidPassword);
   }
-  res.status(200).send({ token: jwt.sign({uid:user.uid}, settings.secretKeys.jwt) });
+  return res.status(200).send({ token: jwt.sign({uid:user.uid}, settings.secretKeys.jwt) });
 });
 
 router.post('/token', async(req,res) => {
