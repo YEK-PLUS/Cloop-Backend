@@ -5,17 +5,15 @@ const resolvers = require('../resolvers');
 const models = require('../models');
 
 const getMe = async (req) => {
-  const token = req.headers['x-token'];
-  if (token) {
+  if (req.headers.authorization) {
     try {
+      const token = req.headers.authorization;
       return await jwt.verify(token, settings.secretKeys.jwt);
     } catch (e) {
-      throw new AuthenticationError(
-        'Your session expired. Sign in again.',
-      );
+      throw new AuthenticationError(settings.messages.sessionExpired);
     }
   }
-  return false;
+  return new AuthenticationError(settings.messages.needAuthToken);
 };
 module.exports = (app) => {
   const apollo = new ApolloServer({

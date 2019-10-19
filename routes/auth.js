@@ -16,12 +16,14 @@ router.post('/login', async (req, res) => {
   if (!isValid) {
     return res.status(401).send(settings.messages.invalidPassword);
   }
-  return res.status(200).send({ token: jwt.sign({uid:user.uid}, settings.secretKeys.jwt) });
+  return res.status(200).send({
+    token: jwt.sign( { uid:user.uid }, settings.secretKeys.jwt, { expiresIn: '1h' })
+  });
 });
 
 router.post('/token', async(req,res) => {
-  const token = req.headers.authorization.split(' ')[1];
-  const uid = await jwt.decode(token) ;
+  const token = req.headers.authorization;
+  const uid = await jwt.verify(token, settings.secretKeys.jwt) ;
   const response = uid || settings.messages.unauthorized
   return res.status(200).send( response );
 });
