@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 
 const router = Router();
 router.post('/login', async (req, res) => {
-  const {login,password} = req.body
-  if (!login||!password) {
+  const { login, password } = req.body;
+  if (!login || !password) {
     return res.status(400).send(settings.messages.requiredFields);
   }
   const user = await models.User.findByLogin(login);
@@ -17,7 +17,7 @@ router.post('/login', async (req, res) => {
     return res.status(401).send(settings.messages.invalidPassword);
   }
   return res.status(200).send({
-    token: jwt.sign( { uid:user.uid }, settings.secretKeys.jwt, { expiresIn: '1h' })
+    token: jwt.sign({ uid: user.uid }, settings.secretKeys.jwt, { expiresIn: '1h' }),
   });
 });
 

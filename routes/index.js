@@ -9,4 +9,4 @@ module.exports.errorRoute = (app) => {
   app.use((req, res) => {
     res.status(404).send(settings.messages.notFound).end();
   });
-}
+};
