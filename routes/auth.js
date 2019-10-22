@@ -21,11 +21,16 @@ router.post('/login', async (req, res) => {
   });
 });
 
-router.post('/token', async(req,res) => {
-  const token = req.headers.authorization;
-  const uid = await jwt.verify(token, settings.secretKeys.jwt) ;
-  const response = uid || settings.messages.unauthorized
-  return res.status(200).send( response );
+router.post('/token', async (req, res) => {
+  if (req.headers.authorization) {
+    try {
+      const token = req.headers.authorization;
+      return await res.status(200).send(jwt.verify(token, settings.secretKeys.jwt));
+    } catch (e) {
+      return res.status(200).send(settings.messages.sessionExpired);
+    }
+  }
+  return res.status(200).send(settings.messages.needAuthToken);
 });
 
 module.exports = router;
