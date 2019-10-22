@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     lastName: {
       type: DataTypes.STRING,
     },
+    birthday: {
+      type: DataTypes.DATE,
+    },
     phone: {
       type: DataTypes.STRING,
     },
@@ -36,6 +39,8 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: sequelize.NOW,
     },
   });
-  UserDetail.associate = () => true;
+  UserDetail.associate = (models) => {
+    UserDetail.belongsTo(models.UserValues, { foreignKey: 'userUid' });
+  };
   return UserDetail;
 };
