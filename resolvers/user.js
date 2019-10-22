@@ -1,22 +1,12 @@
 const jwt = require('jsonwebtoken');
 const { AuthenticationError, UserInputError } = require('apollo-server');
-const { combineResolvers } = require('graphql-resolvers');
 const uuid = require('uuid/v4');
-const sec = require('../middlewares/auth');
 
 module.exports = {
   Query: {
     users: async (parent, args, { models }) => await models.User.findAll(),
     user: async (parent, { uid }, { models }) => await models.User.findByPk(uid),
-    me: combineResolvers(
-      sec,
-      async (parent, args, { models, me }) => {
-        if (!me) {
-          return null;
-        }
-        return await models.User.findByPk(me);
-      },
-    ),
+    me: async (parent, args, { models, me }) => await models.User.findByPk(me.uid),
   },
   Mutation: {
     signUp: async (
