@@ -56,6 +56,16 @@ module.exports = {
         userUid: user.uid,
       },
     }),
+    avatar: async (user, args, { models }) => {
+      const avatarUid = await models.UserValues.findOne({
+        where: {
+          userUid: user.uid,
+          name: 'avatar',
+        },
+      });
+      const avatar = await models.Media.getMedia(avatarUid.value);
+      return avatar;
+    },
     rank: async () => ({
       id: 1,
       rank: 1,
