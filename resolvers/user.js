@@ -7,6 +7,7 @@ module.exports = {
     users: async (parent, args, { models }) => await models.User.findAll(),
     user: async (parent, { uid }, { models }) => await models.User.findByPk(uid),
     me: async (parent, args, { models, me }) => await models.User.findByPk(me.uid),
+    birthdays: (parent, { date, type }, { models }) => models.User.findByDate(date, type),
   },
   Mutation: {
     signUp: async (
