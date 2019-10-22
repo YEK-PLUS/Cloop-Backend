@@ -5,6 +5,7 @@ extend type Query {
   users: [User!]
   user(uid: String!): User
   me: User
+  birthdays(date: String!,type:String!): [User!]!
 }
 extend type Mutation {
   signUp(
@@ -20,8 +21,10 @@ type Token {
 type User {
   uid: String!
   username: String!
-  password: String!
   mail: String!
   details: UserDetail!
+  avatar:Media!
+  rank: Rank!
+  authority : [Authority!]
 }
 `;
