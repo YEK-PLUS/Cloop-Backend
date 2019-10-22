@@ -7,6 +7,7 @@ extend type Query {
 }
 type UserDetail {
     userUid: String!
+    birthday: String!
     country: String!
     location: String!
     photo: String!
@@ -15,5 +16,6 @@ type UserDetail {
     phone: String!
     superVisor: String!
     visor: User!
+    avatar:Media!
 }
 `;
