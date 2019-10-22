@@ -26,8 +26,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: sequelize.NOW,
     },
   });
+  let UserDetail;
   User.associate = (models) => {
+    UserDetail = models.UserDetail;
     User.belongsTo(models.UserDetail, { foreignKey: 'uid' });
+    User.belongsTo(models.UserValues, { foreignKey: 'uid' });
   };
   User.beforeCreate(async (user) => {
     /* eslint no-param-reassign: 0 */
@@ -38,9 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     const saltRounds = 10;
     return await bcrypt.hash(this.password, saltRounds);
   };
-  User.prototype.validatePassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
-  };
+  User.prototype.validatePassword = async (p) => await bcrypt.compare(p, this.password);
   User.findByLogin = async (login) => {
     let user = await User.findOne({
       where: { username: login },
@@ -50,6 +51,22 @@ module.exports = (sequelize, DataTypes) => {
         where: { mail: login },
       });
     }
+    return user;
+  };
+  User.findByDate = async (date, type) => {
+    const user = await User.findAll({
+      include: [
+        {
+          model: UserDetail,
+          where: sequelize.where(
+            sequelize.fn('date_format', sequelize.col('birthday'), '%m.%d'),
+            type,
+            sequelize.fn('date_format', date, '%m.%d'),
+          ),
+        },
+      ],
+      limit: (type === '=' ? null : 3),
+    });
     return user;
   };
   return User;
