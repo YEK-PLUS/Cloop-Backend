@@ -31,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     UserDetail = models.UserDetail;
     User.belongsTo(models.UserDetail, { foreignKey: 'uid' });
     User.belongsTo(models.UserValues, { foreignKey: 'uid' });
+    User.hasOne(models.Rank, { foreignKey: 'rank',targetKey: 'rank' });
+
   };
   User.beforeCreate(async (user) => {
     /* eslint no-param-reassign: 0 */
@@ -41,7 +43,9 @@ module.exports = (sequelize, DataTypes) => {
     const saltRounds = 10;
     return await bcrypt.hash(this.password, saltRounds);
   };
-  User.prototype.validatePassword = async (p) => await bcrypt.compare(p, this.password);
+  User.prototype.validatePassword = async function (password) {
+   return await bcrypt.compare(password, this.password);
+  };
   User.findByLogin = async (login) => {
     let user = await User.findOne({
       where: { username: login },

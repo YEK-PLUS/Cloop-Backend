@@ -57,9 +57,10 @@ module.exports = {
       const avatar = await models.Media.getMedia(avatarUid.value);
       return avatar;
     },
-    rank: async () => ({
-      id: 1,
-      rank: 1,
+    rank: async (user, args, { models }) => await models.Rank.findOne({
+      where: {
+        rank: user.rank,
+      },
     }),
     authority: async () => ([
       {

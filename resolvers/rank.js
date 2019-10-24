@@ -1,8 +1,9 @@
 module.exports = {
   Query: {
-    rank: async () => ({
-      id: 1,
-      rank: 1,
+    rank: async (user, args, { models }) => await models.Rank.findOne({
+      where: {
+        userUid: user.uid,
+      },
     }),
     authority: async () => ([
       {
