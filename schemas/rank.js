@@ -7,8 +7,9 @@ extend type Query {
   authority:Authority!
 }
 type Rank {
-  id: ID!
-  rank:ID!
+  uid: String!
+  rank: String!
+  name:String!
 }
 type Authority {
   name: String!

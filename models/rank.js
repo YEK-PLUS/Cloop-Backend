@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
   });
   Rank.associate = (models) => {
     Rank.hasMany(models.User, { foreignKey: 'rank',targetKey: 'rank' });
-    Rank.belongsTo(models.TranslatedWord, { foreignKey: 'name',targetKey: 'word' });
   };
   return Rank;
 };
