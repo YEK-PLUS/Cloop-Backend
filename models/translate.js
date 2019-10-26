@@ -1,17 +1,18 @@
-const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
-  const Rank = sequelize.define('company_rank', {
-    uid: {
+  const Translate = sequelize.define('translate', {
+    translated_words: {
       type: DataTypes.CHAR,
       primaryKey: true,
     },
-    rank: {
+    word: {
       type: DataTypes.CHAR,
-      primaryKey: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    lang: {
+      type: DataTypes.CHAR,
+    },
+    translated_word: {
+      type: DataTypes.CHAR,
     },
     createdAt: {
       type: DataTypes.DATEONLY,
@@ -24,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: sequelize.NOW,
     },
   });
-  Rank.associate = (models) => {
-    Rank.hasMany(models.User, { foreignKey: 'rank',targetKey: 'rank' });
-    Rank.belongsTo(models.TranslatedWord, { foreignKey: 'name',targetKey: 'word' });
+  Translate.associate = (models) => {
+    Translate.belongsTo(models.TranslatedWord, { foreignKey: 'word',targetKey:'word',as:'translating' });
+
   };
-  return Rank;
+  return Translate;
 };

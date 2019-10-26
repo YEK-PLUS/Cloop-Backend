@@ -3,6 +3,7 @@ const userSchema = require('./user');
 const userDetailSchema = require('./userDetail');
 const mediaSchema = require('./media');
 const rankSchema = require('./rank');
+const translateSchema = require('./translate');
 
 const linkSchema = gql`
   type Query {
@@ -15,4 +16,4 @@ const linkSchema = gql`
     _: Boolean
   }
 `;
-module.exports = [linkSchema, userSchema, userDetailSchema, mediaSchema, rankSchema];
+module.exports = [linkSchema, userSchema, userDetailSchema, mediaSchema, rankSchema,translateSchema];
