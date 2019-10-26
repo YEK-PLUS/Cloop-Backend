@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Rank.associate = (models) => {
-    Rank.hasMany(models.User, { foreignKey: 'rank',targetKey: 'rank' });
+    Rank.hasMany(models.User, { foreignKey: 'rank',sourceKey: 'rank' });
   };
   return Rank;
 };

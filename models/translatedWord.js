@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   TranslatedWord.associate = (models) => {
-    TranslatedWord.hasMany(models.Translate, { foreignKey: 'word',targetKey: 'word' });
+    TranslatedWord.hasMany(models.Translate, { foreignKey: 'word',sourceKey: 'word' });
   };
   return TranslatedWord;
 };
