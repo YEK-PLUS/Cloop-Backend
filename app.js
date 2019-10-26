@@ -3,8 +3,8 @@ const {
 } = require('./requirements');
 
 const app = express();
-routes(app);
 security(app);
+routes(app);
 apollo(app);
 routes.errorRoute(app);
 module.exports = app;
