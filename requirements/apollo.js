@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const schema = require('../schemas');
 const resolvers = require('../resolvers');
 const models = require('../models');
-const _ = require('lodash')
+
 const getMe = async (req) => {
   if (req.headers.authorization) {
     try {
@@ -18,7 +18,7 @@ const getMe = async (req) => {
 module.exports = (app) => {
   const apollo = new ApolloServer({
     typeDefs: schema,
-    resolvers:resolvers.Auth,
+    resolvers,
     context: async ({ req }) => {
       const me = await getMe(req);
       return {
@@ -27,16 +27,6 @@ module.exports = (app) => {
       };
     },
   });
-  const apolloNoAuth = new ApolloServer({
-    typeDefs: schema,
-    resolvers:resolvers.NoAuth,
-    context: async ({ req }) => {
-      return {
-        models,
-      };
-    },
-  });
   apollo.applyMiddleware({ app, path: '/graphql' });
-  apolloNoAuth.applyMiddleware({ app, path: '/graphqlNoAuth' });
   return apollo;
 };
