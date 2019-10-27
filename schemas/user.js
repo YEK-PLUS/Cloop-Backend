@@ -25,6 +25,7 @@ type User {
   details: UserDetail!
   avatar:Media!
   rank: Rank!
+  department: Department!
   authority : [Authority!]
 }
 `;

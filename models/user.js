@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     mail: {
       type: DataTypes.STRING,
     },
+    rank: {
+      type: DataTypes.STRING,
+    },
+    department: {
+      type: DataTypes.STRING,
+    },
     createdAt: {
       type: DataTypes.DATEONLY,
       allowNull: false,
@@ -32,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsTo(models.UserDetail, { foreignKey: 'uid' });
     User.belongsTo(models.UserValues, { foreignKey: 'uid' });
     User.belongsTo(models.Rank, { foreignKey: 'rank',targetKey: 'rank' });
+    User.belongsTo(models.Department, { foreignKey: 'department',targetKey: 'uid' });
 
   };
   User.beforeCreate(async (user) => {

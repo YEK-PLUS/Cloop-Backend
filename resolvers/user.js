@@ -62,6 +62,11 @@ module.exports = {
         rank: user.rank,
       },
     }),
+    department: async (user, args, { models }) => await models.Department.findOne({
+      where: {
+        uid: user.department,
+      },
+    }),
     authority: async () => ([
       {
         name: 'birthday',

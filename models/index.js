@@ -3,6 +3,7 @@ const models = {
   UserDetail: sequelize.import('./userDetail'),
   UserValues: sequelize.import('./UserValues'),
   Rank: sequelize.import('./rank'),
+  Department: sequelize.import('./department'),
   Media: sequelize.import('./media'),
   TranslatedWord: sequelize.import('./translatedWord'),
   Translate: sequelize.import('./translate'),
