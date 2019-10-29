@@ -37,8 +37,8 @@ module.exports = (sequelize, DataTypes) => {
     UserDetail = models.UserDetail;
     User.belongsTo(models.UserDetail, { foreignKey: 'uid' });
     User.belongsTo(models.UserValues, { foreignKey: 'uid' });
-    User.belongsTo(models.Rank, { foreignKey: 'rank',targetKey: 'rank' });
-    User.belongsTo(models.Department, { foreignKey: 'department',targetKey: 'uid' });
+    User.belongsTo(models.Rank, { foreignKey: 'rank', targetKey: 'rank' });
+    User.belongsTo(models.Department, { foreignKey: 'department', targetKey: 'uid' });
     User.hasMany(models.UserNotification, { foreignKey: 'users_uid' });
   };
   User.beforeCreate(async (user) => {
@@ -50,8 +50,8 @@ module.exports = (sequelize, DataTypes) => {
     const saltRounds = 10;
     return await bcrypt.hash(this.password, saltRounds);
   };
-  User.prototype.validatePassword = async function (password) {
-   return await bcrypt.compare(password, this.password);
+  User.prototype.validatePassword = async function validatePassword(password) {
+    return await bcrypt.compare(password, this.password);
   };
   User.findByLogin = async (login) => {
     let user = await User.findOne({

@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt');
-
 module.exports = (sequelize, DataTypes) => {
   const UserNotification = sequelize.define('users_has_company_notification', {
     users_uid: {
@@ -25,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   UserNotification.associate = (models) => {
-    UserNotification.hasOne(models.User, { sourceKey: 'users_uid',foreignKey:`uid` });
-    UserNotification.hasOne(models.Notification, { sourceKey: 'company_notifications_uid',foreignKey:`uid` });
+    UserNotification.hasOne(models.User, { sourceKey: 'users_uid', foreignKey: 'uid' });
+    UserNotification.hasOne(models.Notification, { sourceKey: 'company_notifications_uid', foreignKey: 'uid' });
   };
   return UserNotification;
 };

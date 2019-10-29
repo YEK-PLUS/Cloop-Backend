@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
   const RankNotification = sequelize.define('ranks_has_company_notification', {
@@ -25,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   RankNotification.associate = (models) => {
-    RankNotification.hasOne(models.Rank, { sourceKey: 'company_ranks_rank',foreignKey:`rank` });
-    RankNotification.hasOne(models.Notification, { sourceKey: 'company_notifications_uid',foreignKey:`uid` });
+    RankNotification.hasOne(models.Rank, { sourceKey: 'company_ranks_rank', foreignKey: 'rank' });
+    RankNotification.hasOne(models.Notification, { sourceKey: 'company_notifications_uid', foreignKey: 'uid' });
   };
   return RankNotification;
 };

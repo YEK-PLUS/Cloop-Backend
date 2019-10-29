@@ -18,4 +18,13 @@ const linkSchema = gql`
     _: Boolean
   }
 `;
-module.exports = [linkSchema, userSchema, userDetailSchema, mediaSchema, rankSchema,translateSchema,departmentSchema,notificationSchema];
+module.exports = [
+  linkSchema,
+  userSchema,
+  userDetailSchema,
+  mediaSchema,
+  rankSchema,
+  translateSchema,
+  departmentSchema,
+  notificationSchema,
+];

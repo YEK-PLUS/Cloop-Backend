@@ -11,9 +11,9 @@ module.exports = {
   },
   Department: {
     parent: async (department, args, { models }) => await models.Department.findOne({
-        where: {
-          uid: department.parent,
-        },
-      })
-  }
+      where: {
+        uid: department.parent,
+      },
+    }),
+  },
 };

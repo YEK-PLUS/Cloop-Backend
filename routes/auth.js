@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const models = require('../models');
 const jwt = require('jsonwebtoken');
+const models = require('../models');
 
 const router = Router();
 router.post('/login', async (req, res) => {

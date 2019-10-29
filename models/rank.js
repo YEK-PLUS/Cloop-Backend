@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
   const Rank = sequelize.define('company_rank', {
@@ -25,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Rank.associate = (models) => {
-    Rank.hasMany(models.User, { foreignKey: 'rank',sourceKey: 'rank' });
+    Rank.hasMany(models.User, { foreignKey: 'rank', sourceKey: 'rank' });
     Rank.hasMany(models.RankNotification, { foreignKey: 'rank' });
   };
   return Rank;

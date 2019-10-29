@@ -11,7 +11,7 @@ let Query = {};
 let Mutation = {};
 let Other = {};
 
-[userResolve, userDetail, media, rank,translate,department,notification].map((resolve) => {
+[userResolve, userDetail, media, rank, translate, department, notification].map((resolve) => {
   Query = { ...resolve.Query, ...Query };
   Mutation = { ...resolve.Mutation, ...Mutation };
   Other = { ..._.omit(resolve, ['Query', 'Mutation']), ...Other };

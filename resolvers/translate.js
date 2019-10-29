@@ -5,9 +5,9 @@ module.exports = {
 
   TranslatedWord: {
     translate: async (word, args, { models }) => await models.Translate.findAll({
-        where:{
-          word:word.word
-        }
-      }),
+      where: {
+        word: word.word,
+      },
+    }),
   },
 };

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     word: {
       type: DataTypes.CHAR,
-      primaryKey: true
+      primaryKey: true,
     },
     createdAt: {
       type: DataTypes.DATEONLY,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   TranslatedWord.associate = (models) => {
-    TranslatedWord.hasMany(models.Translate, { foreignKey: 'word',sourceKey: 'word' });
+    TranslatedWord.hasMany(models.Translate, { foreignKey: 'word', sourceKey: 'word' });
   };
   return TranslatedWord;
 };
