@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsTo(models.UserValues, { foreignKey: 'uid' });
     User.belongsTo(models.Rank, { foreignKey: 'rank',targetKey: 'rank' });
     User.belongsTo(models.Department, { foreignKey: 'department',targetKey: 'uid' });
-
+    User.hasMany(models.UserNotification, { foreignKey: 'users_uid' });
   };
   User.beforeCreate(async (user) => {
     /* eslint no-param-reassign: 0 */

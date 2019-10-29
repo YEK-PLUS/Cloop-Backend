@@ -1,17 +1,17 @@
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
-  const Rank = sequelize.define('company_rank', {
-    uid: {
+  const UserNotification = sequelize.define('users_has_company_notification', {
+    users_uid: {
       type: DataTypes.CHAR,
       primaryKey: true,
     },
-    rank: {
+    company_notifications_uid: {
       type: DataTypes.CHAR,
       primaryKey: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    visible: {
+      type: DataTypes.TINYINT,
     },
     createdAt: {
       type: DataTypes.DATEONLY,
@@ -24,9 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: sequelize.NOW,
     },
   });
-  Rank.associate = (models) => {
-    Rank.hasMany(models.User, { foreignKey: 'rank',sourceKey: 'rank' });
-    Rank.hasMany(models.RankNotification, { foreignKey: 'rank' });
+  UserNotification.associate = (models) => {
+    UserNotification.hasOne(models.User, { sourceKey: 'users_uid',foreignKey:`uid` });
+    UserNotification.hasOne(models.Notification, { sourceKey: 'company_notifications_uid',foreignKey:`uid` });
   };
-  return Rank;
+  return UserNotification;
 };
